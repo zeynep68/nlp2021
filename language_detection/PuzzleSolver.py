@@ -1,3 +1,7 @@
+"""
+https://nlp.stanford.edu/projects/glove/
+"""
+
 import numpy as np
 
 class PuzzleSolver(object):
