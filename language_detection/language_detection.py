@@ -82,6 +82,7 @@ def main(detector):
     with open('./document_languages.csv', 'w') as fp:
         fp.writelines([f'{document},{lang}\n' for document,lang in document_languages.items()])
 
+
 if __name__ == "__main__":
     # create detector object
     detector = LanguageDetection()
