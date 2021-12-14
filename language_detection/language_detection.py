@@ -5,10 +5,9 @@ from utils import everygram, out_of_order_measure, save_profile, valid_token
 
 PATH = 'datasets/language_detection/'
 
-TRAINING2 = ['training_english.utf8', 'training_german.utf8', 
+TRAINING = ['training_english.utf8', 'training_german.utf8', 
             'training_norwegian.utf8', 'training_russian.utf8', 
             'training_turkish.utf8', 'training_ukrainian.utf8']
-TRAINING = ['training_english.utf8']
 
 TEST = ['document1.utf8', 'document2.utf8', 'document3.utf8',
         'document4.utf8', 'document5.utf8', 'document6.utf8']
@@ -21,6 +20,8 @@ class LanguageDetection:
     def generate_profile(self, filename):
         # split the text into separate tokens (see tokenize for more details)
         # scan down each token, generating all possible N-grams, for N=1 to 5
+        tokens = tokenize(open(PATH+filename, 'r').read())
+
         done = []
     
         for token in tokens:
