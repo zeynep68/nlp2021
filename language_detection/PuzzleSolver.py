@@ -13,11 +13,13 @@ class PuzzleSolver(object):
         Returns:
             str -- Token that solves the puzzle
         """
-        # to implement
+        # path to word vector representations
         path = "./datasets/word_embeddings/" 
 
+        # representations
         embeddings = np.load(path + "glove_word_embeddings.npy")
 
+        # corresponding words
         fd = open(path + "words.txt", "r")
         words = fd.read().splitlines()
 
@@ -48,11 +50,9 @@ class PuzzleSolver(object):
 
 
 def test_solve_puzzle(puzzle_solver):
-    # This test shall pass!
     assert puzzle_solver.solve_puzzle("man", "king", "woman") == "queen"
 
 
 if __name__ == "__main__":
-    config = {}
     puzzle_solver = PuzzleSolver()
     test_solve_puzzle(puzzle_solver)
