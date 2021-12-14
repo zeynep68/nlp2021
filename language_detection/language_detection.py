@@ -71,9 +71,8 @@ def generate_language_profiles(detector, training=True):
     return
 
 
-def main():
+def main(detector):
     languages = ['english', 'german', 'norwegian', 'russian', 'turkish', 'ukrainian']
-    detector = LanguageDetection()
 
     document_languages = {} #filename as keys, language as values
 
@@ -82,3 +81,15 @@ def main():
 
     with open('./document_languages.csv', 'w') as fp:
         fp.writelines([f'{document},{lang}\n' for document,lang in document_languages.items()])
+
+if __name__ == "__main__":
+    # create detector object
+    detector = LanguageDetection()
+
+    # generate profiles for training and testing data
+    generate_language_profiles(detector)
+    generate_language_profiles(detector, training=False)
+    
+    # evaluate on test data
+    main(detector)
+    
