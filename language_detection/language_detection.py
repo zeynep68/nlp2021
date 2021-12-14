@@ -48,17 +48,37 @@ class LanguageDetection:
     def find_minimum_distance(self, dist):
         return np.argmin(dist)
     
-    def generate_language_profiles(self):
-        for f in TRAINING:
-            self.generate_profile(f)
-        return
 
     def detect_language(self, document_profile='document6.txt'):
         dist = []
-        doc = open(document_profile.replace('.', 'profile.'), 'r').readlines()
+        doc = open(document_profile.replace('.', '_profile.'), 'r').readlines()
 
-        for f in self.training:
-            error = self.measure_profile_distance(open(f.replace('.', 'profile.'), 'r').readlines(), doc)
+        for f in TRAINING:
+            error = self.measure_profile_distance(open(f.replace('.', '_profile.'), 'r').readlines(), doc)
             dist.append(error)
 
         return self.find_minimum_distance(dist)
+
+
+def generate_language_profiles(detector, training=True):
+    if training:
+        dataset = TRAINING
+    else:
+        dataset = TEST
+
+    for data in dataset:
+        detector.generate_profile(data)
+    return
+
+
+def main():
+    languages = ['english', 'german', 'norwegian', 'russian', 'turkish', 'ukrainian']
+    detector = LanguageDetection()
+
+    document_languages = {} #filename as keys, language as values
+
+    for doc in TEST:
+        document_languages[doc] = languages[detector.detect_language(doc)]
+
+    with open('./document_languages.csv', 'w') as fp:
+        fp.writelines([f'{document},{lang}\n' for document,lang in document_languages.items()])
