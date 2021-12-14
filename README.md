@@ -1,5 +1,11 @@
 ### Paper summaries
 
+| Paper                                                                       | Year   |
+| ----------------------------------------------------------------------------|:------:|
+| N-gram-Based Text Categorization                                            | 1994   |
+| Distributed Representations of Words and Phrases and their Compositionality | 2013   |
+| Attention Is All You Need                                                   | 2017   |   
+
 
 ### N-gram based text categorization
 
