@@ -48,7 +48,6 @@ class LanguageDetection:
     def find_minimum_distance(self, dist):
         return np.argmin(dist)
     
-
     def detect_language(self, document_profile='document6.txt'):
         dist = []
         doc = open(document_profile.replace('.', '_profile.'), 'r').readlines()
